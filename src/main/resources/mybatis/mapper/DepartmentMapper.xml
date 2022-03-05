@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyb.springboot03web.mapper.DepartmentMapper">
+
+    <select id="getAllDepartment" resultType="com.wyb.springboot03web.pojo.Department">
+        select * from mybatis.department
+    </select>
+
+    <select id="getDepartmentById" resultType="com.wyb.springboot03web.pojo.Department">
+        select * from mybatis.department where id = #{id}
+    </select>
+
+</mapper>

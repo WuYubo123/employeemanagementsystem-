@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyb.springboot03web.mapper.EmployeeMapper">
+
+    <select id="getAll" resultMap="EmployeeDepartMent">
+        select * from mybatis.employee
+    </select>
+
+    <resultMap id="EmployeeDepartMent" type="com.wyb.springboot03web.pojo.Employee">
+        <result property="id" column="id"></result>
+        <association property="department" column="department" javaType="com.wyb.springboot03web.pojo.Department" select="getDepartment"></association>
+    </resultMap>
+
+    <select id="getDepartment" resultType="com.wyb.springboot03web.pojo.Department">
+        select * from mybatis.department where id = #{id}
+    </select>
+
+
+    <select id="getEmployeeById" resultMap="EmployeeDepartMent">
+        select * from mybatis.employee where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="com.wyb.springboot03web.pojo.Employee">
+    insert into mybatis.employee (id,lastname,email,gender,department,birth)
+    values (#{id},#{lastname},#{email},#{gender},#{department.id},#{birth})
+    </insert>
+
+    <update id="updateEmp" parameterType="com.wyb.springboot03web.pojo.Employee">
+    update mybatis.employee set lastname=#{lastname},email=#{email},gender=#{gender},department=#{department.id},birth=#{birth}
+    where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="com.wyb.springboot03web.pojo.Employee">
+    delete from mybatis.employee where id= #{id}
+    </delete>
+</mapper>

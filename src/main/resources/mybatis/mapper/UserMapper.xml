@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyb.springboot03web.mapper.UserMapper">
+
+
+    <select id="queryUserByName" resultType="com.wyb.springboot03web.pojo.User">
+        select * from mybatis.user where username = #{username}
+    </select>
+
+</mapper>
